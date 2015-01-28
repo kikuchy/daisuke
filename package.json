@@ -1,0 +1,19 @@
+{
+  "name": "daisuke",
+  "version": "0.0.0",
+  "description": "S3のオブジェクトのpresigned urlを生成する。名前は、時限→次元→次元大介から",
+  "main": "./index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kikuchy/daisuke.git"
+  },
+  "author": "kikuchy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kikuchy/daisuke/issues"
+  },
+  "homepage": "https://github.com/kikuchy/daisuke"
+}
