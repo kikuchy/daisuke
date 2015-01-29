@@ -3,3 +3,11 @@
 # -*- mode:coffee -*-
 
 AWS = require "aws-sdk"
+
+s3 = new AWS.S3()
+url = s3.getSignedUrl "getObject",
+    Bucket: "hoge"
+    Key: "fuga"
+    Expires: 60*60*24*30    # 30days
+
+console.log url
