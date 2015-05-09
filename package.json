@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kikuchy/daisuke",
   "dependencies": {
-    "optparse": "^1.0.5"
+    "optparse": "^1.0.5",
+    "aws-sdk": "^2.1.27"
   }
 }
