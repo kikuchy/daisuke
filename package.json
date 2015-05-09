@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kikuchy/daisuke/issues"
   },
-  "homepage": "https://github.com/kikuchy/daisuke"
+  "homepage": "https://github.com/kikuchy/daisuke",
+  "dependencies": {
+    "optparse": "^1.0.5"
+  }
 }

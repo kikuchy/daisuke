@@ -2,12 +2,48 @@
 # vim:ft=coffee
 # -*- mode:coffee -*-
 
+OptParse = require "optparse"
 AWS = require "aws-sdk"
 
+EXEC_SWITCHES = [
+    ["-e", "--expires [EXPIRES]", "Expires generated URL in second(s)."],
+    ["-r", "--region [REGION]", "Region of S3. Default value is 'ap-northeast-1'"]
+]
+
+options =
+    expires: -1
+    region: "ap-northeast-1"
+    bucket: ""
+    key: ""
+
+parser = new OptParse.OptionParser EXEC_SWITCHES
+
+parser.on "expires", (opt, value) ->
+    options.expires = parseInt value
+
+parser.on "region", (opt, value) ->
+    options.region = value
+
+parser.on 2, (value) ->
+    options.bucket = value
+
+parser.on 3, (value) ->
+    options.key = value
+
+parser.parse process.argv
+
+makeS3Options = (options) ->
+    o =
+        Bucket: options.bucket
+        Key: options.key
+    o.Expires = options.expires if options.expires > 0
+    o
+
+AWS.config.update
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    region: options.region
 s3 = new AWS.S3()
-url = s3.getSignedUrl "getObject",
-    Bucket: "hoge"
-    Key: "fuga"
-    Expires: 60*60*24*30    # 30days
+url = s3.getSignedUrl "getObject", (makeS3Options options)
 
 console.log url
